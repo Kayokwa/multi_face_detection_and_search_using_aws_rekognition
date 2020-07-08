@@ -21,9 +21,9 @@ def create_cropped_images_of_detected_faces(detected_faces,sourceImage, size_of_
         actual_image_width, actual_image_height = img.size
         for face in detected_faces:
                 x = int(face['BoundingBox']['Left']*actual_image_width)
-                y = int(face['BoundingBox']['Height']*actual_image_height)
+                height = int(face['BoundingBox']['Height']*actual_image_height)
                 width = int(face['BoundingBox']['Width']*actual_image_width)
-                height = int(face['BoundingBox']['Top']*actual_image_height)
+                y = int(face['BoundingBox']['Top']*actual_image_height)
                 crop_rectangle = ( x, y, width+x, height+y )
                 cropped_im = ImageOps.expand(img.crop(crop_rectangle), border=size_of_border)
                 name_of_cropped_image = "detected_face_" + str(count_of_cropped_faces) + ".jpg"
